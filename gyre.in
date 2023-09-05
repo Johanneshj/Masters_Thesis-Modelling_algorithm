@@ -1,0 +1,112 @@
+&model
+    model_type = 'EVOL'
+    file = 'profile1.data.FGONG'
+    file_format = 'FGONG'
+/
+
+&mode
+  l = 0
+  tag = 'l=0'
+/
+
+&mode
+  l = 1
+  tag = 'l=1'
+/
+
+&mode
+  l = 2
+  tag = 'l=2'
+/
+
+&mode
+  l = 3
+  tag = 'l=3'
+/
+
+&osc
+  variables_set = 'JCD'
+  outer_bound = 'JCD'
+/
+
+&rot
+/
+
+&num
+  diff_scheme = 'COLLOC_GL4'
+/
+
+&scan
+  grid_type = 'LINEAR'
+  freq_min = 500
+  freq_max = 1800
+  freq_min_units = 'UHZ'
+  freq_max_units = 'UHZ'
+  n_freq = 200
+  tag_list = 'l=0'
+/
+
+&scan
+  grid_type = 'LINEAR'
+  freq_min = 500
+  freq_max = 1850
+  freq_min_units = 'UHZ'
+  freq_max_units = 'UHZ'
+  n_freq = 200
+  tag_list = 'l=1'
+/
+
+&scan
+  grid_type = 'LINEAR'
+  freq_min = 500
+  freq_max = 1900
+  freq_min_units = 'UHZ'
+  freq_max_units = 'UHZ'
+  n_freq = 200
+  tag_list = 'l=2'
+/
+
+&scan
+  grid_type = 'LINEAR'
+  freq_min = 800
+  freq_max = 1600
+  freq_min_units = 'UHZ'
+  freq_max_units = 'UHZ'
+  n_freq = 200
+  tag_list = 'l=3'
+/
+
+&grid
+  w_osc = 10
+  w_exp = 2
+  w_ctr = 10
+  tag_list = 'l=0'
+/
+
+&grid
+  w_osc = 10
+  w_exp = 2
+  w_ctr = 10
+  tag_list = 'l=1'
+/
+
+&grid
+  w_osc = 10
+  w_exp = 2
+  w_ctr = 10
+  tag_list = 'l=2'
+/
+
+&grid
+  w_osc = 10
+  w_exp = 2
+  w_ctr = 10
+  tag_list = 'l=3'
+/
+
+&ad_output
+    summary_file = 'profile1-freqs.dat'
+    summary_file_format = 'TXT'
+    summary_item_list = 'l,n_pg,n_p,n_g,freq,E_norm'
+    freq_units = 'UHZ'  
+/
