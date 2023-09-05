@@ -1,0 +1,127 @@
+&star_job
+  ! see star/defaults/star_job.defaults
+    
+    create_pre_main_sequence_model = .false.
+    relax_initial_y = .true.
+    relax_initial_z = .true.
+
+	new_y = 0.31
+	new_z = 0.032
+
+
+  ! save a model at the end of the run
+    save_model_when_terminate = .true.
+    save_model_filename = 'muHer_model.mod'
+
+    set_cumulative_energy_error_each_step_if_age_less_than = 4d7
+    new_cumulative_energy_error = 0.0
+    
+  ! display on-screen plots
+  ! pgstar_flag = .true.
+
+  ! Nuclear Reaction
+    change_net = .true.
+    new_net_name = 'pp_and_cno_extras.net'
+    change_initial_net = .true.
+
+    num_special_rate_factors = 1
+    reaction_for_special_factor = 'r_h1_h1_wk_h2'
+    !reaction_for_special_factor = 'r_n14_pg_o15'
+
+	special_rate_factor = 1.0
+    !electron_coulomb_corrections = 'none'
+ 
+/ ! end of star_job namelist
+
+
+&eos
+/ ! end of eos namelist
+
+
+&kap
+    kap_file_prefix = 'gs98'
+    use_Type2_opacities = .false.
+
+	Zbase = 0.032
+   
+/ ! end of kap namelist
+
+
+&controls
+    !profile_interval = 0
+    !write_profiles_flag = .false.
+    terminal_interval = 100
+  ! write_header_frequency = 100
+
+  ! Timesteps
+	!max_years_for_timestep = 1d7
+    	!varcontrol_target = 1d-3
+	!max_timestep_factor = 2d0
+	!delta_lgT_cntr_limit = 0.1
+	!delta_lgRho_cntr_limit = 0.5
+
+	!delta_lgTeff_limit = 0.001
+	!delta_lgTeff_hard_limit = 0.02
+
+	!delta_lgL_limit = 0.01
+	!delta_lgL_hard_limit = 0.05
+
+	!mesh_delta_coeff = 0.5
+	max_model_number = -1 
+	max_num_profile_models = -1
+ 
+  ! LOGS dir
+	log_directory = 'Y0.31_Z0.032_amlt1.9_fov0.0_M1.195_rate1.0'
+
+  ! start specifications
+	initial_mass = 1.195
+	mixing_length_alpha = 1.9
+	!initial_z = 0.032
+	!initial_y = 0.29
+
+  ! Overshooting
+	!overshoot_scheme = 'step'
+	!overshoot_zone_type = 'any'
+	!overshoot_zone_loc = 'any'
+	!overshoot_bdy_loc = 'any'
+	!overshoot_f = 0.1
+	!overshoot_f0 = 0.005d0 
+    
+	use_dedt_form_of_energy_eqn = .true.
+	!mlt_Pturb_factor = 1
+	MLT_option = 'ML1'
+  
+  ! Brunt-Vaisala
+	calculate_Brunt_N2 = .true.
+
+  ! Atmosphere
+	!atm_option = 'table'
+	!atm_table = 'photosphere'
+	atm_option = 'T_tau'
+    	atm_T_tau_relation = 'Eddington'
+  
+  ! Input Physics (Earl)
+	do_element_diffusion = .true.
+ 
+  ! Max Age
+	!log_g_lower_limit = 3.96
+	!max_age = 8.6d9
+	!num_adjusted_dt_steps_before_max_age = 200
+	!dt_years_for_steps_before_max_age = 1d6
+	!Teff_lower_limit = 5460
+	!log_L_upper_limit = 0.44
+	!log_Rsurf_upper_limit = 0.24
+
+  ! Asteroseismology (Earl)
+    write_pulse_data_with_profile = .true.
+  ! add_atmosphere_to_pulse_data = .true.
+    profile_interval = 10000
+    profile_model = -1
+
+      !photo_interval = 1
+      !profile_interval = 1
+      !history_interval = 1
+      !terminal_interval = 1
+
+
+/ ! end of controls namelist
